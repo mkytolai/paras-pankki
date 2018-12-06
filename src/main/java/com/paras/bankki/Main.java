@@ -15,7 +15,7 @@ public class Main extends Application<Configuration> {
 
     @Override
     public String getName() {
-        return "Paras pankki";
+        return "Paras bankki";
     }
 
 
