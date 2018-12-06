@@ -1,0 +1,66 @@
+import java.text.SimpleDateFormat
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '4.0.2'
+}
+
+if (project.hasProperty('projVersion')) {
+    project.version = project.projVersion
+} else {
+    project.version = '0.1'
+}
+
+project.ext {
+    dropwizardVersion = '1.3.7'
+    cucumberVersion = '4.2.0'
+}
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+dependencies {
+    compile 'io.dropwizard:dropwizard-core:' + dropwizardVersion
+
+    testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
+    testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
+    testCompile 'org.assertj:assertj-core:3.10.0'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.22.0'
+    testCompile 'io.dropwizard:dropwizard-testing:' + dropwizardVersion
+}
+
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+
+shadowJar {
+    it.dependsOn build
+    mergeServiceFiles()
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+    def buildDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())
+    manifest {
+        attributes 'Main-Class': 'com.paras.bankki.Main'
+        attributes 'Build-Date': buildDate
+        attributes 'Implementation-Version': version
+    }
+    archiveName = "${baseName}-${classifier}.${extension}"
+}
+
+task stage() {
+    it.dependsOn shadowJar
+}
+
+repositories {
+    mavenCentral()
+}

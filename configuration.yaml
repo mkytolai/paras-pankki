@@ -1,0 +1,12 @@
+server:
+  applicationConnectors:
+  - type: http
+    port: 4567
+  adminConnectors:
+  - type: http
+    port: 4568
+
+logging:
+  level: INFO
+  loggers:
+    "org.reflections.Reflections": "OFF"
