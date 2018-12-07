@@ -14,24 +14,24 @@ public class AccountSteps {
     private Bank b = new Bank();
     private Balance currentBalance;
 
-    @Given("Alma has {int} EUR in her account")
-    public void alma_has_EUR_in_her_account(Integer balance) {
+    @Given("{string} has {int} EUR in her account")
+    public void alma_has_EUR_in_her_account(String customer, Integer balance) {
         Account a = new Account();
         Balance bal = new Balance(balance, "EUR");
         a.setBalance(bal);
-        b.createAccount("Alma", a);
+        b.createAccount(customer, a);
 
     }
 
-    @When("she checks her balance")
-    public void she_checks_her_balance() {
-        currentBalance = b.getBalance("Alma");
-
+    @When("{string} checks her balance")
+    public void alma_checks_her_balance(String customer) {
+        currentBalance = b.getBalance(customer);
     }
 
     @Then("should she see {int} EUR")
     public void should_she_see_EUR(Integer expected) {
         assertThat(currentBalance.getBalance()).isEqualTo(expected);
+        assertThat(currentBalance.getCurrency()).isEqualTo("EUR");
     }
 
 
