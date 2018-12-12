@@ -2,6 +2,7 @@ package com.paras.bankki;
 
 import com.paras.bankki.account.Account;
 import com.paras.bankki.account.Balance;
+import com.paras.bankki.customer.Customer;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -13,15 +14,15 @@ public class AccountSteps {
 
     private Bank bank = new Bank();
     private Balance currentBalance;
-    private String customer;
+    private Customer customer;
 
     @Given("{word} has {int} {word} in her account")
     public void alma_has_EUR_in_her_account(String customer, Integer balance, String currency) {
         Account account = new Account();
         Balance bal = new Balance(balance, currency);
-        this.customer = customer;
+        this.customer = new Customer(customer);
         account.setBalance(bal);
-        bank.createAccount(customer, account);
+        bank.createAccount(this.customer, account);
 
     }
 

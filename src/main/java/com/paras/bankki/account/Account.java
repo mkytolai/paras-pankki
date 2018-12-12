@@ -1,7 +1,6 @@
 package com.paras.bankki.account;
 
-public class Account
-{
+public class Account {
     private Balance balance;
 
     public Balance getBalance() {
