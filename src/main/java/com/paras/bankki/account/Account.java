@@ -7,7 +7,7 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(Balance balance) {
+    public void deposit(Balance balance) {
         this.balance = balance;
     }
 }
