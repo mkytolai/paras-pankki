@@ -1,24 +1,23 @@
 package com.paras.bankki;
 
 import com.paras.bankki.account.Account;
+import com.paras.bankki.account.AccountResource;
 import com.paras.bankki.account.Balance;
 import com.paras.bankki.customer.Customer;
 
 class AccountHelper {
+    private AccountResource accountResource = new AccountResource();
     private Customer customer;
-    private Bank bank = new Bank();
 
     void deposit(String customer, Integer balance, String currency) {
-        Account account = new Account();
         this.customer = new Customer(customer);
+        Account account = new Account(this.customer);
 
         Balance bal = new Balance(balance, currency);
-        account.deposit(bal);
-
-        bank.createAccount(this.customer, account);
+        accountResource.deposit(account, bal);
     }
 
     Balance getBalance() {
-        return bank.getBalance(customer);
+        return accountResource.getBalance(customer);
     }
 }

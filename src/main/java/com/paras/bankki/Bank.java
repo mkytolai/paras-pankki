@@ -7,13 +7,13 @@ import com.paras.bankki.customer.Customer;
 import java.util.HashMap;
 import java.util.Map;
 
-class Bank {
+public class Bank {
     private Map<Customer, Account> accounts = new HashMap<>();
-    void createAccount(Customer customer, Account account) {
-        accounts.put(customer, account);
+    public void createAccount(Account account) {
+        accounts.put(account.getCustomer(), account);
     }
 
-    Balance getBalance(Customer customer) {
+    public Balance getBalance(Customer customer) {
         Account account = accounts.get(customer);
         return account.getBalance();
     }
