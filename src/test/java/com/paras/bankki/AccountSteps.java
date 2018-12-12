@@ -11,23 +11,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountSteps {
 
-    private Bank b = new Bank();
+    private Bank bank = new Bank();
     private Balance currentBalance;
-    private String c;
+    private String customer;
 
-    @Given("{word} has {int} EUR in her account")
-    public void alma_has_EUR_in_her_account(String customer, Integer balance) {
-        Account a = new Account();
-        Balance bal = new Balance(balance, "EUR");
-        c = customer;
-        a.setBalance(bal);
-        b.createAccount(customer, a);
+    @Given("{word} has {int} {word} in her account")
+    public void alma_has_EUR_in_her_account(String customer, Integer balance, String currency) {
+        Account account = new Account();
+        Balance bal = new Balance(balance, currency);
+        this.customer = customer;
+        account.setBalance(bal);
+        bank.createAccount(customer, account);
 
     }
 
     @When("she checks her balance")
     public void she_checks_her_balance() {
-        currentBalance = b.getBalance(c);
+        currentBalance = bank.getBalance(customer);
     }
 
     @Then("should she see {int} {word}")
