@@ -1,8 +1,8 @@
-package com.paras.bankki;
+package com.paras.pankki;
 
-import com.paras.bankki.version.VersionHealthCheck;
-import com.paras.bankki.version.VersionRepository;
-import com.paras.bankki.version.VersionResource;
+import com.paras.pankki.version.VersionHealthCheck;
+import com.paras.pankki.version.VersionRepository;
+import com.paras.pankki.version.VersionResource;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
@@ -15,7 +15,7 @@ public class Main extends Application<Configuration> {
 
     @Override
     public String getName() {
-        return "Paras bankki";
+        return "Paras pankki";
     }
 
 

@@ -1,4 +1,4 @@
-package com.paras.bankki.version;
+package com.paras.pankki.version;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

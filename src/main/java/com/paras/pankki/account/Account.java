@@ -1,6 +1,6 @@
-package com.paras.bankki.account;
+package com.paras.pankki.account;
 
-import com.paras.bankki.customer.Customer;
+import com.paras.pankki.customer.Customer;
 
 public class Account {
     private Balance balance;

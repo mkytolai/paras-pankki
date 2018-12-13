@@ -50,7 +50,7 @@ shadowJar {
     exclude 'META-INF/*.RSA'
     def buildDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())
     manifest {
-        attributes 'Main-Class': 'com.paras.bankki.Main'
+        attributes 'Main-Class': 'com.paras.pankki.Main'
         attributes 'Build-Date': buildDate
         attributes 'Implementation-Version': version
     }

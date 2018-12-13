@@ -1,11 +1,10 @@
-package com.paras.bankki.account;
+package com.paras.pankki.account;
 
 public class Balance {
-
     private Integer balance;
-    private String currency;
+    private PankkiCurrency currency;
 
-    public Balance(Integer balance, String currency) {
+    public Balance(Integer balance, PankkiCurrency currency) {
         this.balance = balance;
         this.currency = currency;
     }
@@ -14,7 +13,7 @@ public class Balance {
         return balance;
     }
 
-    public String getCurrency() {
+    public PankkiCurrency getCurrency() {
         return currency;
     }
 }

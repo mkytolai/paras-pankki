@@ -1,9 +1,10 @@
-package com.paras.bankki;
+package com.paras.pankki;
 
-import com.paras.bankki.account.Account;
-import com.paras.bankki.account.AccountResource;
-import com.paras.bankki.account.Balance;
-import com.paras.bankki.customer.Customer;
+import com.paras.pankki.account.Account;
+import com.paras.pankki.account.AccountResource;
+import com.paras.pankki.account.Balance;
+import com.paras.pankki.account.PankkiCurrency;
+import com.paras.pankki.customer.Customer;
 
 class AccountHelper {
     private AccountResource accountResource = new AccountResource();
@@ -13,7 +14,7 @@ class AccountHelper {
         this.customer = new Customer(customer);
         Account account = new Account(this.customer);
 
-        Balance bal = new Balance(balance, currency);
+        Balance bal = new Balance(balance, new PankkiCurrency(currency));
         accountResource.deposit(account, bal);
     }
 

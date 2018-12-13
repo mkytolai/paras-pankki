@@ -1,14 +1,15 @@
-package com.paras.bankki;
+package com.paras.pankki;
 
-import com.paras.bankki.account.Account;
-import com.paras.bankki.account.Balance;
-import com.paras.bankki.customer.Customer;
+import com.paras.pankki.account.Account;
+import com.paras.pankki.account.Balance;
+import com.paras.pankki.customer.Customer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
     private Map<Customer, Account> accounts = new HashMap<>();
+
     public void createAccount(Account account) {
         accounts.put(account.getCustomer(), account);
     }

@@ -1,7 +1,7 @@
-package com.paras.bankki.account;
+package com.paras.pankki.account;
 
-import com.paras.bankki.Bank;
-import com.paras.bankki.customer.Customer;
+import com.paras.pankki.Bank;
+import com.paras.pankki.customer.Customer;
 
 public class AccountResource {
     private Bank bank = new Bank();

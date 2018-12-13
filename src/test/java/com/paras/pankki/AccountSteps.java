@@ -1,6 +1,7 @@
-package com.paras.bankki;
+package com.paras.pankki;
 
-import com.paras.bankki.account.Balance;
+import com.paras.pankki.account.Balance;
+import com.paras.pankki.account.PankkiCurrency;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -26,6 +27,6 @@ public class AccountSteps {
     @Then("should she see {int} {word}")
     public void should_she_see_EUR(Integer expected, String currency) {
         assertThat(currentBalance.getBalance()).isEqualTo(expected);
-        assertThat(currentBalance.getCurrency()).isEqualTo(currency);
+        assertThat(currentBalance.getCurrency()).isEqualTo(new PankkiCurrency(currency));
     }
 }

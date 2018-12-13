@@ -1,4 +1,4 @@
-package com.paras.bankki.version;
+package com.paras.pankki.version;
 
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.Rule;

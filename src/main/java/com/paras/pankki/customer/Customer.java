@@ -1,4 +1,4 @@
-package com.paras.bankki.customer;
+package com.paras.pankki.customer;
 
 import java.util.Objects;
 

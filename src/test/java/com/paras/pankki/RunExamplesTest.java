@@ -1,4 +1,4 @@
-package com.paras.bankki;
+package com.paras.pankki;
 
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
