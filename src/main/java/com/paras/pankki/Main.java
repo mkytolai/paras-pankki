@@ -1,5 +1,6 @@
 package com.paras.pankki;
 
+import com.paras.pankki.account.AccountResource;
 import com.paras.pankki.version.VersionHealthCheck;
 import com.paras.pankki.version.VersionRepository;
 import com.paras.pankki.version.VersionResource;
@@ -27,5 +28,8 @@ public class Main extends Application<Configuration> {
         VersionRepository versionRepository = new VersionRepository();
         VersionResource version = new VersionResource(versionRepository);
         environment.jersey().register(version);
+
+        AccountResource accountResource = new AccountResource();
+        environment.jersey().register(accountResource);
     }
 }

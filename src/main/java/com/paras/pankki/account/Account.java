@@ -14,7 +14,7 @@ public class Account {
         return balance;
     }
 
-    void deposit(Balance balance) {
+    public void deposit(Balance balance) {
         this.balance = balance;
     }
 
