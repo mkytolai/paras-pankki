@@ -1,5 +1,7 @@
 package com.paras.pankki.account;
 
+import java.util.Objects;
+
 public class Balance {
     private Integer balance;
     private Currency currency;
@@ -13,17 +15,6 @@ public class Balance {
         this.balance = balance;
         this.currency = currency;
     }
-    /**
-    private Integer sumOfBalance()
-    {
-        Integer sum = 0;
-        for(Integer x : balance)
-        {
-            sum += x;
-        }
-        return sum;
-    }
-     **/
 
     public Integer getBalance() {
         return this.balance;
@@ -31,5 +22,27 @@ public class Balance {
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Balance balance1 = (Balance) o;
+        return Objects.equals(balance, balance1.balance) &&
+                Objects.equals(currency, balance1.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(balance, currency);
+    }
+
+    @Override
+    public String toString() {
+        return "Balance{" +
+                "balance=" + balance +
+                ", currency=" + currency +
+                '}';
     }
 }
