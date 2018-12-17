@@ -11,7 +11,9 @@ import io.dropwizard.setup.Environment;
 public class Main extends Application<Configuration> {
 
     public static void main(String... args) throws Exception {
+
         new Main().run(args);
+
     }
 
     @Override
@@ -29,7 +31,7 @@ public class Main extends Application<Configuration> {
         VersionResource version = new VersionResource(versionRepository);
         environment.jersey().register(version);
 
-        AccountResource accountResource = new AccountResource();
+        AccountResource accountResource = new AccountResource(new Bank());
         environment.jersey().register(accountResource);
     }
 }

@@ -1,16 +1,19 @@
 package com.paras.pankki.account;
 
-import java.util.ArrayList;
-
 public class Balance {
-    private ArrayList<Integer> balance;
-    private PankkiCurrency currency;
+    private Integer balance;
+    private Currency currency;
 
-    public Balance(Integer balance, PankkiCurrency currency) {
-        this.balance = new ArrayList<>();
-        this.balance.add(balance);
+    public Balance() {
+        this.balance = 0;
+        this.currency = new Currency("EUR");
+    }
+
+    public Balance(Integer balance, Currency currency) {
+        this.balance = balance;
         this.currency = currency;
     }
+    /**
     private Integer sumOfBalance()
     {
         Integer sum = 0;
@@ -20,12 +23,13 @@ public class Balance {
         }
         return sum;
     }
+     **/
 
     public Integer getBalance() {
-        return this.sumOfBalance();
+        return this.balance;
     }
 
-    public PankkiCurrency getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 }

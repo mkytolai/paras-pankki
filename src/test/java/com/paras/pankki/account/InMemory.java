@@ -1,10 +1,11 @@
 package com.paras.pankki.account;
 
+import com.paras.pankki.Bank;
 import com.paras.pankki.customer.Customer;
 
 public class InMemory implements Helper {
 
-    private AccountResource accountResource = new AccountResource();
+    private AccountResource accountResource = new AccountResource(new Bank());
     private Customer customer;
 
     @Override
@@ -12,7 +13,7 @@ public class InMemory implements Helper {
         this.customer = new Customer(customer);
         Account account = new Account(this.customer);
 
-        Balance bal = new Balance(balance, new PankkiCurrency(currency));
+        Balance bal = new Balance(balance, new Currency(currency));
         accountResource.deposit(account, bal);
     }
     @Override

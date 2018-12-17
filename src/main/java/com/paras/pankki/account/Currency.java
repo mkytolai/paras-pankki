@@ -1,11 +1,14 @@
 package com.paras.pankki.account;
 
 import java.util.Objects;
-
-public class PankkiCurrency {
+public class Currency {
     private final String currency;
 
-    public PankkiCurrency(String currency) {
+    public Currency() {
+        currency = "";
+    }
+
+    public Currency(String currency) {
         this.currency = currency;
     }
 
@@ -22,7 +25,7 @@ public class PankkiCurrency {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PankkiCurrency that = (PankkiCurrency) o;
+        Currency that = (Currency) o;
         return Objects.equals(currency, that.currency);
     }
 

@@ -11,9 +11,13 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 
 public class AccountResource {
-    private Bank bank = new Bank();
+    private Bank bank;
 
-    public void deposit(Account account, Balance balance) {
+    public AccountResource(Bank bank) {
+        this.bank = bank;
+    }
+
+    void deposit(Account account, Balance balance) {
         bank.createAccount(account);
         account.deposit(balance);
     }
