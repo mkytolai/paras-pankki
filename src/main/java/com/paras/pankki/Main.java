@@ -33,5 +33,6 @@ public class Main extends Application<Configuration> {
 
         AccountResource accountResource = new AccountResource(new Bank());
         environment.jersey().register(accountResource);
+
     }
 }

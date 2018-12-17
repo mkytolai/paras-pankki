@@ -6,6 +6,9 @@ public class Account {
     private Balance balance;
     private Customer customer;
 
+    private Account() {
+    }
+
     public Account(Customer customer) {
         this.customer = customer;
     }
