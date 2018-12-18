@@ -30,10 +30,16 @@ public class AccountResource {
         return Response.status(Response.Status.CREATED).build();
     }
 
+    @POST
+    public void deposit(Deposit deposit) {
+
+    }
+
     void deposit(Account account, Balance balance) {
         bank.createAccount(account);
         account.deposit(balance);
     }
+
 
     @GET
     @Path("{user}")
