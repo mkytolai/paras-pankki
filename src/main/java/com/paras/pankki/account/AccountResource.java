@@ -18,18 +18,6 @@ public class AccountResource {
         this.bank = bank;
     }
 
-    @GET
-    @Path("{customer}/{amount}/{currency}")
-    public Response deposit(@PathParam("customer") String customer,
-                         @PathParam("amount") Integer amount,
-                         @PathParam("currency")String currency) {
-        Account account = new Account(new Customer(customer));
-        Balance balance = new Balance(amount, new Currency(currency));
-
-        deposit(account, balance);
-        return Response.status(Response.Status.CREATED).build();
-    }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deposit(Deposit deposit) {
@@ -38,10 +26,10 @@ public class AccountResource {
     }
 
     void deposit(Account account, Balance balance) {
+        bank.deposit(account, balance);
         bank.createAccount(account);
         account.deposit(balance);
     }
-
 
     @GET
     @Path("{user}")

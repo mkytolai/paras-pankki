@@ -9,7 +9,7 @@ public class Deposit {
     private  Account account;
     private  Balance balance;
 
-    public Deposit() {
+    private Deposit() {
         this.account = new Account(new Customer(""));
         this.balance = new Balance(0, new Currency(""));
     }

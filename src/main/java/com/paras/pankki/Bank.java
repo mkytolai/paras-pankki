@@ -25,4 +25,17 @@ public class Bank {
         Account account = accounts.get(customer);
         return account.getBalance();
     }
+
+    public void deposit(Account account, Balance balance) {
+        Customer customer = account.getCustomer();
+
+        if(accounts.containsKey(customer)){
+            Account currentAccount = accounts.get(customer);
+            currentAccount.deposit(balance);
+        }else{
+            accounts.put(customer, account);
+            account.deposit(balance);
+        }
+
+    }
 }
