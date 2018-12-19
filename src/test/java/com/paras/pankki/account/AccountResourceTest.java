@@ -18,7 +18,7 @@ public class AccountResourceTest {
         AccountResource accountResource = new AccountResource(bank);
 
 
-        Customer customer = new Customer("Stina");
+        Customer customer = new Customer("Alma");
         Account account = new Account(customer);
         Balance balance = new Balance(25, new Currency("EUR"));
 
