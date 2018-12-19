@@ -31,8 +31,10 @@ public class AccountResource {
     }
 
     @POST
-    public void deposit(Deposit deposit) {
-
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deposit(Deposit deposit) {
+        deposit(deposit.getAccount(), deposit.getBalance());
+        return Response.ok(deposit).build();
     }
 
     void deposit(Account account, Balance balance) {

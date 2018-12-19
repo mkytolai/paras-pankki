@@ -1,6 +1,8 @@
 package com.paras.pankki.account;
 
 
+import com.paras.pankki.customer.Customer;
+
 import java.util.Objects;
 
 public class Deposit {
@@ -8,6 +10,8 @@ public class Deposit {
     private  Balance balance;
 
     public Deposit() {
+        this.account = new Account(new Customer(""));
+        this.balance = new Balance(0, new Currency(""));
     }
 
     Deposit(Balance balance, Account account) {
