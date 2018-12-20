@@ -15,10 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountResourceMappingTest {
 
-    private final Bank alma = new Bank((new Account(new Customer("Alma"))));
+    private final Bank bank = new Bank((new Customer("Alma")));
     @Rule
     public final ResourceTestRule resources = ResourceTestRule.builder()
-            .addResource(new AccountResource(alma))
+            .addResource(new AccountResource(bank))
             .build();
 
 

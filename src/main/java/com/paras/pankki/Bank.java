@@ -13,12 +13,12 @@ public class Bank {
 
     public Bank(){}
 
-    public Bank(Account account) {
-        createAccount(account);
+    public Bank(Customer customer) {
+        createAccount(customer);
     }
 
-    public void createAccount(Account account) {
-        accounts.put(account.getCustomer(), account);
+    public void createAccount(Customer customer) {
+        accounts.put(customer, new Account(customer));
     }
 
     public Balance getBalance(Customer customer) {
