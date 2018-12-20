@@ -40,6 +40,6 @@ public class AccountResourceTest {
         Deposit deposit = new Deposit(balance, account);
         accountResource.deposit(deposit);
 
-        verify(bank).deposit(account, balance);
+        verify(bank).deposit(account.getCustomer(), balance);
     }
 }

@@ -27,8 +27,7 @@ public class AccountResource {
 
     void deposit(Account account, Balance balance) {
         bank.createAccount(account.getCustomer());
-        bank.deposit(account, balance);
-        //account.deposit(balance);
+        bank.deposit(account.getCustomer(), balance);
     }
 
     @GET
