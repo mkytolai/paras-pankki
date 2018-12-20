@@ -6,25 +6,25 @@ import com.paras.pankki.customer.Customer;
 import java.util.Objects;
 
 public class Deposit {
-    private  Account account;
+    private  Customer customer;
     private  Balance balance;
 
     private Deposit() {
-        this.account = new Account(new Customer(""));
+        this.customer = new Customer("");
         this.balance = new Balance(0, new Currency(""));
     }
 
-    Deposit(Balance balance, Account account) {
+    Deposit(Balance balance, Customer customer) {
         this.balance = balance;
-        this.account = account;
+        this.customer = customer;
     }
 
     public Balance getBalance() {
         return this.balance;
     }
 
-    public Account getAccount() {
-        return this.account;
+    public Customer getCustomer() {
+        return this.customer;
     }
 
     @Override
@@ -32,12 +32,12 @@ public class Deposit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Deposit deposit = (Deposit) o;
-        return Objects.equals(account, deposit.account) &&
+        return Objects.equals(customer, deposit.customer) &&
                 Objects.equals(balance, deposit.balance);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(account, balance);
+        return Objects.hash(customer, balance);
     }
 }

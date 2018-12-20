@@ -21,7 +21,7 @@ public class RestClient implements Helper {
     @Override
     public void deposit(String customer, Integer balance, String currency) {
         Client jerseyClient = JerseyClientBuilder.createClient();
-        Deposit testDeposit = new Deposit(new Balance(balance, new Currency(currency)),new Account(new Customer(customer)));
+        Deposit testDeposit = new Deposit(new Balance(balance, new Currency(currency)),new Customer(customer));
 
         jerseyClient
                 .target("http://127.0.0.1:4567")

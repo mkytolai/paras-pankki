@@ -8,13 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DepositTest {
 
-    private Deposit testDeposit = new Deposit(new Balance(25,new Currency("EUR")),new Account(new Customer("Alma")));
+    private Deposit testDeposit = new Deposit(new Balance(25,new Currency("EUR")),new Customer("Alma"));
     @Test
     public void check_deposit_is_notnull()
     {
         Assert.assertNotNull(testDeposit);
         Assert.assertNotNull(testDeposit.getBalance());
-        Assert.assertNotNull(testDeposit.getAccount());
+        Assert.assertNotNull(testDeposit.getCustomer());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class DepositTest {
 
     @Test
     public void make_sure_alma_is_account_owner() {
-        assertThat(testDeposit.getAccount()).isEqualTo(new Account(new Customer("Alma")));
+        assertThat(testDeposit.getCustomer()).isEqualTo(new Customer("Alma"));
     }
 
 }

@@ -27,7 +27,7 @@ public class AccountResourceMappingTest {
 
         Balance expected = new Balance(25, new Currency("EUR"));
 
-        Deposit testDeposit = new Deposit(new Balance(25, new Currency("EUR")), new Account(new Customer("Alma")));
+        Deposit testDeposit = new Deposit(new Balance(25, new Currency("EUR")), new Customer("Alma"));
 
         Response response = resources
                 .target("/account")

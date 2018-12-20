@@ -36,10 +36,10 @@ public class AccountResourceTest {
         AccountResource accountResource = new AccountResource(bank);
 
         Balance balance = new Balance(25, new Currency("EUR"));
-        Account account = new Account(new Customer("Alma"));
-        Deposit deposit = new Deposit(balance, account);
+        Customer customer = new Customer("Alma");
+        Deposit deposit = new Deposit(balance, customer);
         accountResource.deposit(deposit);
 
-        verify(bank).deposit(account.getCustomer(), balance);
+        verify(bank).deposit(customer, balance);
     }
 }
