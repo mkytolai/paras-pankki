@@ -22,7 +22,7 @@ public class AccountResourceTest {
         Account account = new Account(customer);
         Balance balance = new Balance(25, new Currency("EUR"));
 
-        accountResource.deposit(account, balance);
+        accountResource.deposit(account.getCustomer(), balance);
 
         Balance actual = accountResource.getBalance(customer);
 

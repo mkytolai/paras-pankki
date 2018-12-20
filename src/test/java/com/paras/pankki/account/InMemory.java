@@ -14,7 +14,7 @@ public class InMemory implements Helper {
         Account account = new Account(this.customer);
 
         Balance bal = new Balance(balance, new Currency(currency));
-        accountResource.deposit(account, bal);
+        accountResource.deposit(account.getCustomer(), bal);
     }
     @Override
     public Balance getBalance() {

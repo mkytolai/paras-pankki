@@ -21,13 +21,13 @@ public class AccountResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deposit(Deposit deposit) {
-        deposit(deposit.getAccount(), deposit.getBalance());
+        deposit(deposit.getAccount().getCustomer(), deposit.getBalance());
         return Response.ok(deposit).build();
     }
 
-    void deposit(Account account, Balance balance) {
-        bank.createAccount(account.getCustomer());
-        bank.deposit(account.getCustomer(), balance);
+    void deposit(Customer customer, Balance balance) {
+        bank.createAccount(customer);
+        bank.deposit(customer, balance);
     }
 
     @GET
