@@ -11,9 +11,9 @@ import java.util.Map;
 public class Bank {
     private Map<Customer, Account> accounts = new HashMap<>();
 
-    public Bank() {
-        Account account = new Account(new Customer("Alma"));
-        account.deposit(new Balance(0, new Currency("EUR")));
+    public Bank(){}
+
+    public Bank(Account account) {
         createAccount(account);
     }
 

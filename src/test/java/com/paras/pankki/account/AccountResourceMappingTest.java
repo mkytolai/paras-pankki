@@ -5,6 +5,7 @@ import com.paras.pankki.customer.Customer;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestRule;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
@@ -14,25 +15,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountResourceMappingTest {
 
+    private final Bank alma = new Bank((new Account(new Customer("Alma"))));
     @Rule
     public final ResourceTestRule resources = ResourceTestRule.builder()
-            .addResource(new AccountResource(new Bank()))
+            .addResource(new AccountResource(alma))
             .build();
 
-    @Test
-    public void test_account_balance() {
-        Balance expected = new Balance(0, new Currency("EUR"));
-
-        Balance actual = resources
-                .target("/account/Alma")
-                .request()
-                .get(Balance.class);
-
-        assertThat(actual).isEqualTo(expected);
-    }
 
     @Test
-    public void should_deposit_25_EUR_to_Alma() {
+    public void should_deposit_25_EUR_to_Alma_and_check_account() {
+
+        Balance expected = new Balance(25, new Currency("EUR"));
 
         Deposit testDeposit = new Deposit(new Balance(25, new Currency("EUR")), new Account(new Customer("Alma")));
 
@@ -43,6 +36,13 @@ public class AccountResourceMappingTest {
 
 
         assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
+
+        Balance actual = resources
+                .target("/account/Alma")
+                .request()
+                .get(Balance.class);
+
+        assertThat(actual).isEqualTo(expected);
 
     }
 
