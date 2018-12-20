@@ -19,10 +19,9 @@ public class AccountResourceTest {
 
 
         Customer customer = new Customer("Alma");
-        Account account = new Account(customer);
         Balance balance = new Balance(25, new Currency("EUR"));
 
-        accountResource.deposit(account.getCustomer(), balance);
+        accountResource.deposit(customer, balance);
 
         Balance actual = accountResource.getBalance(customer);
 

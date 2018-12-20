@@ -18,7 +18,7 @@ public class Bank {
     }
 
     public void createAccount(Customer customer) {
-        accounts.put(customer, new Account(customer));
+        accounts.put(customer, new Account());
     }
 
     public Balance getBalance(Customer customer) {
