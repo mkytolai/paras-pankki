@@ -15,8 +15,13 @@ public class AccountSteps {
     private Balance currentBalance;
 
     @Given("{word} has {int} {word} in her account")
-    public void alma_has_EUR_in_her_account(String customer, Integer balance, String currency) {
-        helper.deposit(customer, balance, currency);
+    public void alma_has_EUR_in_her_account(String customer, Integer amount, String currency) {
+        helper.deposit(customer, amount, currency);
+    }
+
+    @Given("{word} deposits {int} {word}")
+    public void alma_deposits_EUR(String customer, Integer amount, String currency) {
+        helper.deposit(customer, amount, currency);
     }
 
     @When("she checks her balance")
@@ -29,4 +34,6 @@ public class AccountSteps {
         assertThat(currentBalance.getBalance()).isEqualTo(expected);
         assertThat(currentBalance.getCurrency()).isEqualTo(new Currency(currency));
     }
+
+
 }

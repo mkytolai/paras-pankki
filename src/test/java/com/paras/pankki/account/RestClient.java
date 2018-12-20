@@ -21,7 +21,7 @@ public class RestClient implements Helper {
     @Override
     public void deposit(String customer, Integer balance, String currency) {
         Client jerseyClient = JerseyClientBuilder.createClient();
-        Deposit testDeposit = new Deposit(new Balance(balance, new Currency(currency)),new Customer(customer));
+        Deposit testDeposit = new Deposit(new Balance(balance, new Currency(currency)), new Customer(customer));
 
         jerseyClient
                 .target("http://127.0.0.1:4567")
@@ -29,7 +29,6 @@ public class RestClient implements Helper {
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(testDeposit));
     }
-
 
 
     @Override

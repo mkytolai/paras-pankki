@@ -17,7 +17,7 @@ public class Bank {
         createAccount(customer);
     }
 
-    public void createAccount(Customer customer) {
+    void createAccount(Customer customer) {
         accounts.put(customer, new Account());
     }
 
@@ -39,8 +39,6 @@ public class Bank {
             createAccount(customer);
             Account currentAccount = accounts.get(customer);
             currentAccount.deposit(balance);
-
         }
-
     }
 }

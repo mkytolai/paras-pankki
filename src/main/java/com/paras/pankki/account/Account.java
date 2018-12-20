@@ -1,19 +1,34 @@
 package com.paras.pankki.account;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Account {
-    private Balance balance;
+    private List<Balance> balance;
 
     public Account() {
     }
 
     public Balance getBalance() {
-        return balance;
+        return currentBalance();
     }
 
     public void deposit(Balance balance) {
-        this.balance = balance;
+        if (this.balance == null) {
+            this.balance = new ArrayList<>();
+        }
+        this.balance.add(balance);
+        //this.balance = new Balance((this.balance.getBalance()+balance.getBalance()), new Currency("EUR"));
+
+    }
+    private Balance currentBalance()
+    {
+        Integer temp = 0;
+        for(Balance i: balance){
+            temp += i.getBalance();
+        }
+        return new Balance(temp, new Currency("EUR"));
     }
 
 
