@@ -26,6 +26,10 @@ public class Bank {
         return account.getBalance();
     }
 
+    public Account getAccount(Customer customer){
+        return accounts.get(customer);
+    }
+
     public void deposit(Account account, Balance balance) {
         Customer customer = account.getCustomer();
 
