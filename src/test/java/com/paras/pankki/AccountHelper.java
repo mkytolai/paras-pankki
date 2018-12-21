@@ -21,7 +21,7 @@ class AccountHelper {
         helper.deposit(customer, balance, currency);
     }
 
-    Balance getBalance() {
-        return helper.getBalance();
+    Balance getBalance(String customer) {
+        return helper.getBalance(customer);
     }
 }

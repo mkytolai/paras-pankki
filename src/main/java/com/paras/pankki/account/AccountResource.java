@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 public class AccountResource {
     private Bank bank;
 
+
     public AccountResource(Bank bank) {
         this.bank = bank;
     }
@@ -23,6 +24,7 @@ public class AccountResource {
     public Response deposit(Deposit deposit) {
         deposit(deposit.getCustomer(), deposit.getBalance());
         return Response.ok(deposit).build();
+
     }
 
     void deposit(Customer customer, Balance balance) {

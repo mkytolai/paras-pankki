@@ -17,7 +17,9 @@ public class InMemory implements Helper {
     }
 
     @Override
-    public Balance getBalance() {
-        return accountResource.getBalance(customer);
+    public Balance getBalance(String customer) {
+
+        Customer c = new Customer(customer);
+        return accountResource.getBalance(c);
     }
 }

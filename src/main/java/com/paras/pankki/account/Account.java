@@ -19,7 +19,6 @@ public class Account {
             this.balance = new ArrayList<>();
         }
         this.balance.add(balance);
-        //this.balance = new Balance((this.balance.getBalance()+balance.getBalance()), new Currency("EUR"));
 
     }
     private Balance currentBalance()

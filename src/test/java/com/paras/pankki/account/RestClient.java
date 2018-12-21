@@ -1,6 +1,5 @@
 package com.paras.pankki.account;
 
-import com.paras.pankki.Main;
 import com.paras.pankki.customer.Customer;
 import org.glassfish.jersey.client.JerseyClientBuilder;
 
@@ -11,11 +10,7 @@ import javax.ws.rs.core.MediaType;
 public class RestClient implements Helper {
 
     public RestClient() {
-        try {
-            Main.main("server", "configuration.yaml");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        MainHandler.start("server", "configuration.yaml");
     }
 
     @Override
@@ -30,14 +25,12 @@ public class RestClient implements Helper {
                 .post(Entity.json(testDeposit));
     }
 
-
     @Override
-    public Balance getBalance() {
+    public Balance getBalance(String user) {
         Client jerseyClient = JerseyClientBuilder.createClient();
-
         return jerseyClient
                 .target("http://127.0.0.1:4567")
-                .path("account/Alma")
+                .path("account/"+user)
                 .request()
                 .get(Balance.class);
     }

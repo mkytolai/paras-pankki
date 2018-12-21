@@ -15,18 +15,18 @@ public class AccountSteps {
     private Balance currentBalance;
 
     @Given("{word} has {int} {word} in her account")
-    public void alma_has_EUR_in_her_account(String customer, Integer amount, String currency) {
+    public void user_has_EUR_in_her_account(String customer, Integer amount, String currency) {
         helper.deposit(customer, amount, currency);
     }
 
     @Given("{word} deposits {int} {word}")
-    public void alma_deposits_EUR(String customer, Integer amount, String currency) {
+    public void user_deposits_EUR(String customer, Integer amount, String currency) {
         helper.deposit(customer, amount, currency);
     }
 
-    @When("she checks her balance")
-    public void she_checks_her_balance() {
-        currentBalance = helper.getBalance();
+    @When("{word} checks her balance")
+    public void she_checks_her_balance(String customer) {
+        currentBalance = helper.getBalance(customer);
     }
 
     @Then("should she see {int} {word}")
