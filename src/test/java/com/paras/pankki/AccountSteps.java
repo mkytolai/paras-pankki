@@ -2,6 +2,7 @@ package com.paras.pankki;
 
 import com.paras.pankki.account.Balance;
 import com.paras.pankki.account.Currency;
+import com.paras.pankki.customer.Customer;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -14,19 +15,21 @@ public class AccountSteps {
     private AccountHelper helper = new AccountHelper();
     private Balance currentBalance;
 
+
     @Given("{word} has {int} {word} in her account")
     public void user_has_EUR_in_her_account(String customer, Integer amount, String currency) {
-        helper.deposit(customer, amount, currency);
+        helper.setCurrentCustomer(customer);
+        helper.deposit(amount, currency);
     }
 
-    @Given("{word} deposits {int} {word}")
-    public void user_deposits_EUR(String customer, Integer amount, String currency) {
-        helper.deposit(customer, amount, currency);
+    @Given("she deposits {int} {word}")
+    public void user_deposits_EUR(Integer amount, String currency) {
+        helper.deposit(amount, currency);
     }
 
-    @When("{word} checks her balance")
-    public void she_checks_her_balance(String customer) {
-        currentBalance = helper.getBalance(customer);
+    @When("she checks her balance")
+    public void she_checks_her_balance() {
+        currentBalance = helper.getBalance();
     }
 
     @Then("should she see {int} {word}")

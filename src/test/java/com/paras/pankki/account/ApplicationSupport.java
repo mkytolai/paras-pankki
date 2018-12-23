@@ -2,17 +2,19 @@ package com.paras.pankki.account;
 
 import com.paras.pankki.Main;
 
-class MainHandler {
+class ApplicationSupport {
 
     private static boolean isRunning = false;
-    private MainHandler(){}
+
+    private ApplicationSupport() {
+    }
 
     static void start(String command, String configuration) {
-        if(!isRunning){
+        if (!isRunning) {
             isRunning = Boolean.TRUE;
             try {
                 Main.main(command, configuration);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }

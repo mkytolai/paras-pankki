@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 public class RestClient implements Helper {
 
     public RestClient() {
-        MainHandler.start("server", "configuration.yaml");
+        ApplicationSupport.start("server", "configuration.yaml");
     }
 
     @Override
