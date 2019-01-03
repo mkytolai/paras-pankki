@@ -44,6 +44,10 @@ public class Bank {
 
     public void withdraw(Customer customer, Balance balance) {
         Account currentAccount = accounts.get(customer);
-        currentAccount.withdraw(balance);
+        try {
+            currentAccount.withdraw(balance);
+        } catch (InsufficientFundsException e) {
+            e.printStackTrace();
+        }
     }
 }

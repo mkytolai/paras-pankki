@@ -1,5 +1,7 @@
 package com.paras.pankki.account;
 
+import com.paras.pankki.InsufficientFundsException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -43,10 +45,11 @@ public class Account {
         return Objects.hash(balance);
     }
 
-    public void withdraw(Balance balance) {
+    public void withdraw(Balance balance) throws InsufficientFundsException {
         //TODO: add comparison/sorting method to Balance, this ignores currency
         if (balance.getBalance() > currentBalance().getBalance()) {
-
+            throw new InsufficientFundsException("Insufficient funds, tried to withdraw: "+balance.getBalance()+
+                    " had: "+currentBalance().getBalance());
         }else{
             Integer withdrawAmount = balance.getBalance() * -1;
             Balance withdrawBalance = new Balance(withdrawAmount, balance.getCurrency());
