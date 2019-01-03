@@ -38,5 +38,18 @@ public class AccountSteps {
         assertThat(currentBalance.getCurrency()).isEqualTo(new Currency(currency));
     }
 
+    @Given("she withdraws {int} {word}")
+    public void she_withdraws_EUR(Integer amount, String currency) {
+        helper.withdraw(amount, currency);
+    }
+
+    @Then("she should have {int} {word} in her account")
+    public void she_should_have_EUR_in_her_account(Integer amount, String currency) {
+        Balance expected = new Balance(amount, new Currency(currency));
+        Balance actual = helper.getBalance();
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
 
 }

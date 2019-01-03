@@ -19,12 +19,11 @@ public class Account {
             this.balance = new ArrayList<>();
         }
         this.balance.add(balance);
-
     }
-    private Balance currentBalance()
-    {
+
+    private Balance currentBalance() {
         Integer temp = 0;
-        for(Balance i: balance){
+        for (Balance i : balance) {
             temp += i.getBalance();
         }
         return new Balance(temp, new Currency("EUR"));
@@ -42,5 +41,16 @@ public class Account {
     @Override
     public int hashCode() {
         return Objects.hash(balance);
+    }
+
+    public void withdraw(Balance balance) {
+        //TODO: add comparison/sorting method to Balance, this ignores currency
+        if (balance.getBalance() > currentBalance().getBalance()) {
+
+        }else{
+            Integer withdrawAmount = balance.getBalance() * -1;
+            Balance withdrawBalance = new Balance(withdrawAmount, balance.getCurrency());
+            this.balance.add(withdrawBalance);
+        }
     }
 }

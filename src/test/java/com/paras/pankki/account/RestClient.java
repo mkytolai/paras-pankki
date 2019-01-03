@@ -34,4 +34,9 @@ public class RestClient implements Helper {
                 .request()
                 .get(Balance.class);
     }
+
+    @Override
+    public void withdraw(Balance balance) {
+
+    }
 }

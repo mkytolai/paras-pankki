@@ -10,3 +10,9 @@ Feature: Check balance
     And she deposits 10 EUR
     When she checks her balance
     Then should she see 35 EUR
+
+
+  Scenario: A customer should be able to withdraw funds
+    Given Lena has 25 EUR in her account
+    When she withdraws 10 EUR
+    Then she should have 15 EUR in her account

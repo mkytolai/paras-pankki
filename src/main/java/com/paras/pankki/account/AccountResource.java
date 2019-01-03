@@ -37,4 +37,7 @@ public class AccountResource {
         return bank.getBalance(customer);
     }
 
+    void withdraw(Customer customer, Balance balance) {
+        bank.withdraw(customer, balance);
+    }
 }

@@ -1,26 +1,22 @@
 package com.paras.pankki;
 
-import com.paras.pankki.account.Balance;
-import com.paras.pankki.account.Helper;
-import com.paras.pankki.account.InMemory;
-import com.paras.pankki.account.RestClient;
+import com.paras.pankki.account.*;
 import com.paras.pankki.customer.Customer;
 
 class AccountHelper {
     private Helper helper;
     private String currentCustomer;
 
-    AccountHelper()  {
+    AccountHelper() {
         if (System.getProperty("E2E") != null) {
             helper = new RestClient();
-        }
-        else{
+        } else {
             helper = new InMemory();
         }
     }
 
-    void deposit(Integer balance, String currency) {
-        helper.deposit(currentCustomer, balance, currency);
+    void deposit(Integer amount, String currency) {
+        helper.deposit(currentCustomer, amount, currency);
     }
 
     void setCurrentCustomer(String currentCustomer) {
@@ -29,5 +25,10 @@ class AccountHelper {
 
     Balance getBalance() {
         return helper.getBalance(currentCustomer);
+    }
+
+    void withdraw(Integer amount, String currency) {
+        Balance balance = new Balance(amount, new Currency(currency));
+        helper.withdraw(balance);
     }
 }

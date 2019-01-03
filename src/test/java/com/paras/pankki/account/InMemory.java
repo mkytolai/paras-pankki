@@ -6,6 +6,7 @@ import com.paras.pankki.customer.Customer;
 public class InMemory implements Helper {
 
     private AccountResource accountResource = new AccountResource(new Bank());
+    //TODO: switch customer to argument, for all methods
     private Customer customer;
 
     @Override
@@ -21,5 +22,10 @@ public class InMemory implements Helper {
 
         Customer c = new Customer(customer);
         return accountResource.getBalance(c);
+    }
+
+    @Override
+    public void withdraw(Balance balance) {
+        accountResource.withdraw(customer, balance);
     }
 }
