@@ -2,7 +2,7 @@ package com.paras.pankki.account;
 
 import java.util.Objects;
 
-public class Balance {
+public class Balance implements Comparable<Balance> {
     private Integer balance;
     private Currency currency;
 
@@ -44,5 +44,20 @@ public class Balance {
                 "balance=" + balance +
                 ", currency=" + currency +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Balance o) {
+        if (o.getCurrency().equals(this.currency)) {
+            return this.balance - o.getBalance();
+        } else {
+            try {
+                throw new IncomparableCurrencyTypes("Tried to compare " + this.currency + " to " + o.getCurrency());
+            } catch (IncomparableCurrencyTypes incomparableCurrencyTypes) {
+                incomparableCurrencyTypes.printStackTrace();
+            }
+        }
+
+        return 0;
     }
 }

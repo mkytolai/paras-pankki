@@ -46,8 +46,7 @@ public class Account {
     }
 
     public void withdraw(Balance balance) throws InsufficientFundsException {
-        //TODO: add comparison/sorting method to Balance, this ignores currency
-        if (balance.getBalance() > currentBalance().getBalance()) {
+        if (balance.compareTo(currentBalance())>0) {
             throw new InsufficientFundsException("Insufficient funds, tried to withdraw: "+balance.getBalance()+
                     " had: "+currentBalance().getBalance());
         }else{
