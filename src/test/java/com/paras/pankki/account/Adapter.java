@@ -1,7 +1,7 @@
 package com.paras.pankki.account;
 
 
-public interface Helper {
+public interface Adapter {
 
     void deposit(String customer, Integer balance, String currency);
     Balance getBalance(String customer);

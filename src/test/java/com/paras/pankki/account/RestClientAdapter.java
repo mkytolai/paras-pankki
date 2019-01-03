@@ -7,9 +7,9 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 
-public class RestClient implements Helper {
+public class RestClientAdapter implements Adapter {
 
-    public RestClient() {
+    public RestClientAdapter() {
         ApplicationSupport.start("server", "configuration.yaml");
     }
 

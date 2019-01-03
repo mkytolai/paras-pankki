@@ -1,17 +1,16 @@
 package com.paras.pankki;
 
 import com.paras.pankki.account.*;
-import com.paras.pankki.customer.Customer;
 
 class AccountHelper {
-    private Helper helper;
+    private Adapter helper;
     private String currentCustomer;
 
     AccountHelper() {
         if (System.getProperty("E2E") != null) {
-            helper = new RestClient();
+            helper = new RestClientAdapter();
         } else {
-            helper = new InMemory();
+            helper = new InMemoryAdapter();
         }
     }
 

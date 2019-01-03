@@ -3,7 +3,7 @@ package com.paras.pankki.account;
 import com.paras.pankki.Bank;
 import com.paras.pankki.customer.Customer;
 
-public class InMemory implements Helper {
+public class InMemoryAdapter implements Adapter {
 
     private AccountResource accountResource = new AccountResource(new Bank());
     //TODO: switch customer to argument, for all methods
