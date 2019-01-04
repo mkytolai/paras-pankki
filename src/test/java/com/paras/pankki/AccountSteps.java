@@ -40,7 +40,11 @@ public class AccountSteps {
 
     @Given("she withdraws {int} {word}")
     public void she_withdraws_EUR(Integer amount, String currency) {
-        helper.withdraw(amount, currency);
+        try {
+            helper.withdraw(amount, currency);
+        } catch (InsufficientFundsException e) {
+            e.printStackTrace();
+        }
     }
 
     @Then("she should have {int} {word} in her account")
@@ -51,5 +55,17 @@ public class AccountSteps {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @When("she withdraws {int} {word} it should warn her that she exceeds her funds")
+    public void she_withdraws_EUR_it_should_warn_her_that_she_exceeds_her_funds(Integer amount, String currency) {
+        Exception expected = new InsufficientFundsException("mock");
+        Exception actual = null;
+
+        try {
+            helper.withdraw(amount, currency);
+        }catch (Exception e){
+            actual = e;
+        }
+        assertThat(expected.getClass()).isEqualTo(actual.getClass());
+    }
 
 }

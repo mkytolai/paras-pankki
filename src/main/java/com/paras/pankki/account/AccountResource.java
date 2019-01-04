@@ -1,6 +1,7 @@
 package com.paras.pankki.account;
 
 import com.paras.pankki.Bank;
+import com.paras.pankki.InsufficientFundsException;
 import com.paras.pankki.customer.Customer;
 
 import javax.ws.rs.*;
@@ -37,7 +38,7 @@ public class AccountResource {
         return bank.getBalance(customer);
     }
 
-    void withdraw(Customer customer, Balance balance) {
+    void withdraw(Customer customer, Balance balance) throws InsufficientFundsException {
         bank.withdraw(customer, balance);
     }
 }

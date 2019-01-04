@@ -42,12 +42,9 @@ public class Bank {
         }
     }
 
-    public void withdraw(Customer customer, Balance balance) {
+    public void withdraw(Customer customer, Balance balance) throws InsufficientFundsException {
         Account currentAccount = accounts.get(customer);
-        try {
-            currentAccount.withdraw(balance);
-        } catch (InsufficientFundsException e) {
-            e.printStackTrace();
-        }
+
+        currentAccount.withdraw(balance);
     }
 }

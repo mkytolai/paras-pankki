@@ -16,3 +16,8 @@ Feature: Check balance
     Given Lena has 25 EUR in her account
     When she withdraws 10 EUR
     Then she should have 15 EUR in her account
+
+  Scenario: A customer should not be able to withdraw more than their account holds
+    Given Brita has 25 EUR in her account
+    When she withdraws 35 EUR it should warn her that she exceeds her funds
+
