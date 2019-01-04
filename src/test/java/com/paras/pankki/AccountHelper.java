@@ -2,6 +2,8 @@ package com.paras.pankki;
 
 import com.paras.pankki.account.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class AccountHelper {
     private Adapter helper;
     private String currentCustomer;
@@ -38,4 +40,9 @@ class AccountHelper {
         currentBalance = helper.getBalance(currentCustomer);
     }
 
+    void assertBalance(Integer expected, String currency) {
+        Balance expectedBalance = new Balance(expected, new Currency(currency));
+
+        assertThat(currentBalance).isEqualTo(expectedBalance);
+    }
 }

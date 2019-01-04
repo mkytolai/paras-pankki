@@ -11,7 +11,6 @@ Feature: Check balance
     When she checks her balance
     Then should she see 35 EUR
 
-
   Scenario: A customer should be able to withdraw funds
     Given Lena has 25 EUR in her account
     When she withdraws 10 EUR
@@ -19,5 +18,5 @@ Feature: Check balance
 
   Scenario: A customer should not be able to withdraw more than their account holds
     Given Brita has 25 EUR in her account
-    When she withdraws 35 EUR it should warn her that she exceeds her funds
-    Then should she see 25 EUR
+    When she tries to withdraw 35 EUR she should be informed that she exceeds her funds
+    And her balance should still be 25 EUR
