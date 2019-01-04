@@ -1,7 +1,6 @@
 package com.paras.pankki.account;
 
 import com.paras.pankki.Bank;
-import com.paras.pankki.InsufficientFundsException;
 import com.paras.pankki.customer.Customer;
 
 public class InMemoryAdapter implements Adapter {
@@ -23,7 +22,7 @@ public class InMemoryAdapter implements Adapter {
     }
 
     @Override
-    public void withdraw(String customer, Balance balance){
+    public void withdraw(String customer, Balance balance) {
         Customer cust = new Customer(customer);
         accountResource.withdraw(cust, balance);
     }

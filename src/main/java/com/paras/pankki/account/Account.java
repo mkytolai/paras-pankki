@@ -45,11 +45,11 @@ public class Account {
         return Objects.hash(balance);
     }
 
-    public void withdraw(Balance balance){
-        if (balance.compareTo(currentBalance())>0) {
-            throw new InsufficientFundsException("Insufficient funds, tried to withdraw: "+balance.getBalance()+
-                    " had: "+currentBalance().getBalance());
-        }else{
+    public void withdraw(Balance balance) {
+        if (balance.compareTo(currentBalance()) > 0) {
+            throw new InsufficientFundsException("Insufficient funds, tried to withdraw: " + balance.getBalance() +
+                    " had: " + currentBalance().getBalance());
+        } else {
             Integer withdrawAmount = balance.getBalance() * -1;
             Balance withdrawBalance = new Balance(withdrawAmount, balance.getCurrency());
             this.balance.add(withdrawBalance);

@@ -1,10 +1,8 @@
 package com.paras.pankki.account;
 
 import com.paras.pankki.InsufficientFundsException;
-import com.paras.pankki.InsufficientWebFundsException;
 import com.paras.pankki.customer.Customer;
 import org.glassfish.jersey.client.JerseyClientBuilder;
-import sun.tools.jar.CommandLine;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;

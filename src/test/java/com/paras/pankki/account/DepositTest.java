@@ -8,17 +8,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DepositTest {
 
-    private Deposit testDeposit = new Deposit(new Balance(25,new Currency("EUR")),new Customer("Alma"));
+    private Deposit testDeposit = new Deposit(new Balance(25, new Currency("EUR")), new Customer("Alma"));
+
     @Test
-    public void check_deposit_is_notnull()
-    {
+    public void check_deposit_is_notnull() {
         Assert.assertNotNull(testDeposit);
         Assert.assertNotNull(testDeposit.getBalance());
         Assert.assertNotNull(testDeposit.getCustomer());
     }
 
     @Test
-    public void check_deposit_is_25_EUR(){
+    public void check_deposit_is_25_EUR() {
         assertThat(testDeposit.getBalance()).isEqualTo(new Balance(25, new Currency("EUR")));
     }
 

@@ -6,8 +6,8 @@ import com.paras.pankki.customer.Customer;
 import java.util.Objects;
 
 public class Deposit {
-    private  Customer customer;
-    private  Balance balance;
+    private Customer customer;
+    private Balance balance;
 
     private Deposit() {
         this.customer = new Customer("");

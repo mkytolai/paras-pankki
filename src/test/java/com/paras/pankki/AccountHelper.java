@@ -26,7 +26,7 @@ class AccountHelper {
         return helper.getBalance(currentCustomer);
     }
 
-    void withdraw(Integer amount, String currency){
+    void withdraw(Integer amount, String currency) {
         Balance balance = new Balance(amount, new Currency(currency));
         helper.withdraw(currentCustomer, balance);
     }

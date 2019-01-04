@@ -5,7 +5,6 @@ import com.paras.pankki.customer.Customer;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestRule;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;

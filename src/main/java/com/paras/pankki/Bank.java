@@ -42,7 +42,7 @@ public class Bank {
         }
     }
 
-    public void withdraw(Customer customer, Balance balance){
+    public void withdraw(Customer customer, Balance balance) {
         Account currentAccount = accounts.get(customer);
 
         currentAccount.withdraw(balance);

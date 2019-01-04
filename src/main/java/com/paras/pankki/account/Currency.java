@@ -1,6 +1,7 @@
 package com.paras.pankki.account;
 
 import java.util.Objects;
+
 public class Currency {
     private final String currency;
 

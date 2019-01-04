@@ -5,7 +5,6 @@ import com.paras.pankki.InsufficientFundsException;
 import com.paras.pankki.InsufficientWebFundsException;
 import com.paras.pankki.customer.Customer;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
