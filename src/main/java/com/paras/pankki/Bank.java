@@ -17,7 +17,7 @@ public class Bank {
         createAccount(customer);
     }
 
-    void createAccount(Customer customer) {
+    private void createAccount(Customer customer) {
         accounts.put(customer, new Account());
     }
 
@@ -42,7 +42,7 @@ public class Bank {
         }
     }
 
-    public void withdraw(Customer customer, Balance balance) throws InsufficientFundsException {
+    public void withdraw(Customer customer, Balance balance){
         Account currentAccount = accounts.get(customer);
 
         currentAccount.withdraw(balance);

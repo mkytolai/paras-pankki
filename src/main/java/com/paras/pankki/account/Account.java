@@ -45,7 +45,7 @@ public class Account {
         return Objects.hash(balance);
     }
 
-    public void withdraw(Balance balance) throws InsufficientFundsException {
+    public void withdraw(Balance balance){
         if (balance.compareTo(currentBalance())>0) {
             throw new InsufficientFundsException("Insufficient funds, tried to withdraw: "+balance.getBalance()+
                     " had: "+currentBalance().getBalance());

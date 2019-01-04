@@ -53,7 +53,7 @@ public class AccountResource {
         return Response.ok(w).build();
     }
 
-    void withdraw(Customer customer, Balance balance) throws InsufficientFundsException {
+    void withdraw(Customer customer, Balance balance) {
         bank.withdraw(customer, balance);
     }
 }

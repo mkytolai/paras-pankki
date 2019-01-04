@@ -23,7 +23,7 @@ public class InMemoryAdapter implements Adapter {
     }
 
     @Override
-    public void withdraw(String customer, Balance balance) throws InsufficientFundsException {
+    public void withdraw(String customer, Balance balance){
         Customer cust = new Customer(customer);
         accountResource.withdraw(cust, balance);
     }

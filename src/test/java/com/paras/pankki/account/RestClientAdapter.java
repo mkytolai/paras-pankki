@@ -39,7 +39,7 @@ public class RestClientAdapter implements Adapter {
     }
 
     @Override
-    public void withdraw(String customer, Balance balance) throws InsufficientFundsException {
+    public void withdraw(String customer, Balance balance) {
         Client jerseyClient = JerseyClientBuilder.createClient();
         Withdrawal testWithdrawal = new Withdrawal(balance, new Customer(customer));
 
