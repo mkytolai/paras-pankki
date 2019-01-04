@@ -6,8 +6,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 
 public class AccountSteps {
@@ -39,11 +40,7 @@ public class AccountSteps {
 
     @Given("she withdraws {int} {word}")
     public void she_withdraws_EUR(Integer amount, String currency) {
-        try {
-            helper.withdraw(amount, currency);
-        } catch (InsufficientFundsException e) {
-            e.printStackTrace();
-        }
+        helper.withdraw(amount, currency);
     }
 
     @Then("she should have {int} {word} in her account")
@@ -56,19 +53,9 @@ public class AccountSteps {
 
     @When("she withdraws {int} {word} it should warn her that she exceeds her funds")
     public void she_withdraws_EUR_it_should_warn_her_that_she_exceeds_her_funds(Integer amount, String currency) {
-        Exception expected = new InsufficientFundsException("test");
-        Exception actual = null;
-
-        try {
-            helper.withdraw(amount, currency);
-        } catch (Exception e) {
-            actual = e;
-        }
-
-        assertNotNull(actual);
-        assertThat(expected.getClass()).isEqualTo(actual.getClass());
-
-
+        assertThatExceptionOfType(InsufficientFundsException.class).isThrownBy(() -> helper.withdraw(amount, currency))
+                .withMessage("Insufficient funds, tried to withdraw: 35 had: 25")
+                .withNoCause();
     }
 
 }
