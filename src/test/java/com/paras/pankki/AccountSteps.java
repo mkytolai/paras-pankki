@@ -2,12 +2,12 @@ package com.paras.pankki;
 
 import com.paras.pankki.account.Balance;
 import com.paras.pankki.account.Currency;
-import com.paras.pankki.customer.Customer;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 
 public class AccountSteps {
@@ -61,10 +61,14 @@ public class AccountSteps {
 
         try {
             helper.withdraw(amount, currency);
-        }catch (Exception e){
+        } catch (Exception e) {
             actual = e;
         }
+
+        assertNotNull(actual);
         assertThat(expected.getClass()).isEqualTo(actual.getClass());
+
+
     }
 
 }
