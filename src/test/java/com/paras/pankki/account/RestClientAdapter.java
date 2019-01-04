@@ -1,7 +1,10 @@
 package com.paras.pankki.account;
 
+import com.paras.pankki.InsufficientFundsException;
+import com.paras.pankki.InsufficientWebFundsException;
 import com.paras.pankki.customer.Customer;
 import org.glassfish.jersey.client.JerseyClientBuilder;
+import sun.tools.jar.CommandLine;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -30,13 +33,28 @@ public class RestClientAdapter implements Adapter {
         Client jerseyClient = JerseyClientBuilder.createClient();
         return jerseyClient
                 .target("http://127.0.0.1:4567")
-                .path("account/"+user)
+                .path("account/" + user)
                 .request()
                 .get(Balance.class);
     }
 
     @Override
-    public void withdraw(Balance balance) {
+    public void withdraw(String customer, Balance balance) throws InsufficientFundsException {
+        Client jerseyClient = JerseyClientBuilder.createClient();
+        Withdrawal testWithdrawal = new Withdrawal(balance, new Customer(customer));
+
+        if (
+                jerseyClient
+                        .target("http://127.0.0.1:4567")
+                        .path("account/w")
+                        .request(MediaType.APPLICATION_JSON)
+                        .post(Entity.json(testWithdrawal))
+                        .getStatus()
+                        ==
+                        403
+        ) {
+            throw new InsufficientFundsException("test");
+        }
 
     }
 }

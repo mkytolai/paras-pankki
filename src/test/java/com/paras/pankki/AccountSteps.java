@@ -13,8 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AccountSteps {
 
     private AccountHelper helper = new AccountHelper();
-    private Balance currentBalance;
-
 
     @Given("{word} has {int} {word} in her account")
     public void user_has_EUR_in_her_account(String customer, Integer amount, String currency) {
@@ -29,13 +27,14 @@ public class AccountSteps {
 
     @When("she checks her balance")
     public void she_checks_her_balance() {
-        currentBalance = helper.getBalance();
+        helper.getBalance();
     }
 
     @Then("should she see {int} {word}")
     public void should_she_see_EUR(Integer expected, String currency) {
-        assertThat(currentBalance.getBalance()).isEqualTo(expected);
-        assertThat(currentBalance.getCurrency()).isEqualTo(new Currency(currency));
+        Balance expectedBalance = new Balance(expected, new Currency(currency));
+        assertThat(helper.getBalance()).isEqualTo(expectedBalance);
+        assertThat(helper.getBalance().getCurrency()).isEqualTo(new Currency(currency));
     }
 
     @Given("she withdraws {int} {word}")
@@ -57,7 +56,7 @@ public class AccountSteps {
 
     @When("she withdraws {int} {word} it should warn her that she exceeds her funds")
     public void she_withdraws_EUR_it_should_warn_her_that_she_exceeds_her_funds(Integer amount, String currency) {
-        Exception expected = new InsufficientFundsException("mock");
+        Exception expected = new InsufficientFundsException("test");
         Exception actual = null;
 
         try {

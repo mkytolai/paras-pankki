@@ -2,8 +2,10 @@ package com.paras.pankki.account;
 
 import com.paras.pankki.Bank;
 import com.paras.pankki.InsufficientFundsException;
+import com.paras.pankki.InsufficientWebFundsException;
 import com.paras.pankki.customer.Customer;
 
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,6 +38,19 @@ public class AccountResource {
     @Path("{user}")
     public Balance getBalance(@PathParam("user") Customer customer) {
         return bank.getBalance(customer);
+    }
+
+    @POST
+    @Path("w")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response withdraw(Withdrawal w) throws InsufficientWebFundsException {
+
+        try {
+            withdraw(w.getCustomer(), w.getBalance());
+        } catch (InsufficientFundsException i) {
+            throw new InsufficientWebFundsException(i.getMessage());
+        }
+        return Response.ok(w).build();
     }
 
     void withdraw(Customer customer, Balance balance) throws InsufficientFundsException {

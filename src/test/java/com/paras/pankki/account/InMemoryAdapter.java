@@ -7,12 +7,9 @@ import com.paras.pankki.customer.Customer;
 public class InMemoryAdapter implements Adapter {
 
     private AccountResource accountResource = new AccountResource(new Bank());
-    //TODO: switch customer to argument, for all methods
-    private Customer customer;
 
     @Override
     public void deposit(String customer, Integer balance, String currency) {
-        this.customer = new Customer(customer);
 
         Balance bal = new Balance(balance, new Currency(currency));
         accountResource.deposit(new Customer(customer), bal);
@@ -26,7 +23,8 @@ public class InMemoryAdapter implements Adapter {
     }
 
     @Override
-    public void withdraw(Balance balance) throws InsufficientFundsException {
-        accountResource.withdraw(customer, balance);
+    public void withdraw(String customer, Balance balance) throws InsufficientFundsException {
+        Customer cust = new Customer(customer);
+        accountResource.withdraw(cust, balance);
     }
 }

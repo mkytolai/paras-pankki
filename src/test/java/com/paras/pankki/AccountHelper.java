@@ -26,8 +26,8 @@ class AccountHelper {
         return helper.getBalance(currentCustomer);
     }
 
-    void withdraw(Integer amount, String currency) throws InsufficientFundsException {
+    void withdraw(Integer amount, String currency) throws InsufficientFundsException, InsufficientWebFundsException {
         Balance balance = new Balance(amount, new Currency(currency));
-        helper.withdraw(balance);
+        helper.withdraw(currentCustomer, balance);
     }
 }
