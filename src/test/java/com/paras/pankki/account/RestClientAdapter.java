@@ -7,6 +7,7 @@ import org.glassfish.jersey.client.JerseyClientBuilder;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 public class RestClientAdapter implements Adapter {
 
@@ -41,18 +42,15 @@ public class RestClientAdapter implements Adapter {
         Client jerseyClient = JerseyClientBuilder.createClient();
         Withdrawal testWithdrawal = new Withdrawal(balance, new Customer(customer));
 
-        if (
-                jerseyClient
-                        .target("http://127.0.0.1:4567")
-                        .path("account/w")
-                        .request(MediaType.APPLICATION_JSON)
-                        .post(Entity.json(testWithdrawal))
-                        .getStatus()
-                        ==
-                        403
-        ) {
-            throw new InsufficientFundsException("test");
-        }
+        Response response = jerseyClient
+                .target("http://127.0.0.1:4567")
+                .path("account/w")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(testWithdrawal));
 
+        if (response.getStatus() == 403) {
+            String message = response.readEntity(String.class);
+            throw new InsufficientFundsException(message);
+        }
     }
 }
