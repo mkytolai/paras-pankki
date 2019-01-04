@@ -27,7 +27,7 @@ public class AccountSteps {
 
     @When("she checks her balance")
     public void she_checks_her_balance() {
-        helper.getBalance();
+        helper.checkBalance();
     }
 
     @Then("should she see {int} {word}")
@@ -37,7 +37,7 @@ public class AccountSteps {
         assertThat(helper.getBalance().getCurrency()).isEqualTo(new Currency(currency));
     }
 
-    @Given("she withdraws {int} {word}")
+    @When("she withdraws {int} {word}")
     public void she_withdraws_EUR(Integer amount, String currency) {
         helper.withdraw(amount, currency);
     }

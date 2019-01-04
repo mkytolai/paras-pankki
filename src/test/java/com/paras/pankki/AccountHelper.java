@@ -5,6 +5,7 @@ import com.paras.pankki.account.*;
 class AccountHelper {
     private Adapter helper;
     private String currentCustomer;
+    private Balance currentBalance;
 
     AccountHelper() {
         if (System.getProperty("E2E") != null) {
@@ -22,12 +23,19 @@ class AccountHelper {
         this.currentCustomer = currentCustomer;
     }
 
+    void checkBalance() {
+        currentBalance = helper.getBalance(currentCustomer);
+    }
+
     Balance getBalance() {
-        return helper.getBalance(currentCustomer);
+        return currentBalance;
     }
 
     void withdraw(Integer amount, String currency) {
+        currentBalance = helper.getBalance(currentCustomer); // withdraw might throw exception
         Balance balance = new Balance(amount, new Currency(currency));
         helper.withdraw(currentCustomer, balance);
+        currentBalance = helper.getBalance(currentCustomer);
     }
+
 }
