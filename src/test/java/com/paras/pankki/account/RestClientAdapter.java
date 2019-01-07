@@ -22,7 +22,7 @@ public class RestClientAdapter implements Adapter {
 
         jerseyClient
                 .target("http://127.0.0.1:4567")
-                .path("account")
+                .path("account/d")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(testDeposit));
     }

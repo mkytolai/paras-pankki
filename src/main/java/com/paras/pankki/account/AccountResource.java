@@ -21,6 +21,7 @@ public class AccountResource {
     }
 
     @POST
+    @Path("d")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deposit(Deposit deposit) {
         deposit(deposit.getCustomer(), deposit.getBalance());

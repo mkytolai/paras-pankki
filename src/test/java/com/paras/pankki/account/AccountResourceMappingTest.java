@@ -29,7 +29,7 @@ public class AccountResourceMappingTest {
         Deposit testDeposit = new Deposit(new Balance(25, new Currency("EUR")), new Customer("Alma"));
 
         Response response = resources
-                .target("/account")
+                .target("/account/d")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(testDeposit));
 
@@ -43,6 +43,8 @@ public class AccountResourceMappingTest {
 
         assertThat(actual).isEqualTo(expected);
 
+
     }
+    //TODO add withdraw
 
 }
