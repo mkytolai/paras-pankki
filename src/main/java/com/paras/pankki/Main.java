@@ -14,6 +14,7 @@ public class Main extends Application<Configuration> {
 
         new Main().run(args);
 
+
     }
 
     @Override
