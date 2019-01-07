@@ -15,7 +15,8 @@ public class Transaction {
     private Balance balance;
     private TransactionType transactionType;
 
-    public Transaction() {
+    @SuppressWarnings("unused")
+    private Transaction() {
         this.customer = new Customer("");
         this.balance = new Balance(0, new Currency(""));
         this.transactionType = TransactionType.DEPOSIT;
@@ -35,6 +36,7 @@ public class Transaction {
         return balance;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public TransactionType getTransactionType() {
         return transactionType;
     }

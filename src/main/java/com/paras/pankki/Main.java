@@ -13,8 +13,6 @@ public class Main extends Application<Configuration> {
     public static void main(String... args) throws Exception {
 
         new Main().run(args);
-
-
     }
 
     @Override

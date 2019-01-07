@@ -26,10 +26,6 @@ public class Bank {
         return account.getBalance();
     }
 
-    public Account getAccount(Customer customer) {
-        return accounts.get(customer);
-    }
-
     public void deposit(Customer customer, Balance balance) {
 
         if (accounts.containsKey(customer)) {
