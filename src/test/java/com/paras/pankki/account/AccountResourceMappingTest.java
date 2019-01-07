@@ -43,6 +43,32 @@ public class AccountResourceMappingTest {
 
         assertThat(actual).isEqualTo(expected);
     }
-    //TODO add withdraw
+
+    @Test
+    public void should_withdraw_10_EUR_from_Alma_and_verify() {
+        Balance expected = new Balance(15, new Currency("EUR"));
+        Transaction startingBalance = new Transaction(new Customer("Alma"), new Balance(25, new Currency("EUR")), 0);
+
+        Response depositResponse = resources
+                .target("/account")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(startingBalance));
+
+        assertThat(depositResponse.getStatus()).isEqualTo(Response.ok().build().getStatus());
+
+        Transaction withdrawal = new Transaction(new Customer("Alma"), new Balance(10, new Currency("EUR")), 1);
+
+        Response withdrawResponse = resources
+                .target("/account")
+                .request(MediaType.APPLICATION_JSON)
+                .post(Entity.json(withdrawal));
+
+        assertThat(withdrawResponse.getStatus()).isEqualTo(Response.ok().build().getStatus());
+
+        Balance actual = resources.target("/account/Alma").request().get(Balance.class);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
 
 }

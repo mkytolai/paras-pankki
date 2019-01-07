@@ -42,8 +42,8 @@ public class AccountResource {
             deposit(transaction.getCustomer(), transaction.getBalance());
             return Response.ok(transaction).build();
 
-        } else if (transaction.getT()==1) {
-
+        }
+        if (transaction.getT() == 1) {
             try {
                 withdraw(transaction.getCustomer(), transaction.getBalance());
             } catch (InsufficientFundsException i) {

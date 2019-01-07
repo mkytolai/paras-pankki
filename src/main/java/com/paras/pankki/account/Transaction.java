@@ -15,7 +15,7 @@ public class Transaction {
 
     private Customer customer;
     private Balance balance;
-    private Integer t;
+    private int t;
 
     public Transaction() {
         this.customer = new Customer("");
@@ -35,7 +35,7 @@ public class Transaction {
     public Balance getBalance() {
         return balance;
     }
-    Integer getT() {
+    public int getT() {
         return t;
     }
 
@@ -47,7 +47,7 @@ public class Transaction {
         Transaction that = (Transaction) o;
         return Objects.equals(customer, that.customer) &&
                 Objects.equals(balance, that.balance) &&
-                t.equals(that.t);
+                t == (that.t);
     }
 
     @Override
