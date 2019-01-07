@@ -36,8 +36,8 @@ public class AccountResourceTest {
 
         Balance balance = new Balance(25, new Currency("EUR"));
         Customer customer = new Customer("Alma");
-        Deposit deposit = new Deposit(balance, customer);
-        accountResource.deposit(deposit);
+        Transaction transaction = new Transaction(customer, balance, 0);
+        accountResource.transaction(transaction);
 
         verify(bank).deposit(customer, balance);
     }

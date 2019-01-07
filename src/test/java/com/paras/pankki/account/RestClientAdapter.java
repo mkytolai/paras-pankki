@@ -18,13 +18,15 @@ public class RestClientAdapter implements Adapter {
     @Override
     public void deposit(String customer, Integer balance, String currency) {
         Client jerseyClient = JerseyClientBuilder.createClient();
-        Deposit testDeposit = new Deposit(new Balance(balance, new Currency(currency)), new Customer(customer));
+        Customer testCustomer = new Customer(customer);
+        Balance testBalance = new Balance(balance, new Currency(currency));
+        Transaction transaction = new Transaction(testCustomer, testBalance, 0);
 
         jerseyClient
                 .target("http://127.0.0.1:4567")
-                .path("account/d")
+                .path("account")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(testDeposit));
+                .post(Entity.json(transaction));
     }
 
     @Override
@@ -40,13 +42,14 @@ public class RestClientAdapter implements Adapter {
     @Override
     public void withdraw(String customer, Balance balance) {
         Client jerseyClient = JerseyClientBuilder.createClient();
-        Withdrawal testWithdrawal = new Withdrawal(balance, new Customer(customer));
+        Customer testCustomer = new Customer(customer);
+        Transaction testTransaction = new Transaction(testCustomer, balance, 1);
 
         Response response = jerseyClient
                 .target("http://127.0.0.1:4567")
-                .path("account/w")
+                .path("account")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(testWithdrawal));
+                .post(Entity.json(testTransaction));
 
         if (response.getStatus() == 403) {
             String message = response.readEntity(String.class);

@@ -26,12 +26,12 @@ public class AccountResourceMappingTest {
 
         Balance expected = new Balance(25, new Currency("EUR"));
 
-        Deposit testDeposit = new Deposit(new Balance(25, new Currency("EUR")), new Customer("Alma"));
+        Transaction testTransaction = new Transaction(new Customer("Alma"), new Balance(25, new Currency("EUR")), 0);
 
         Response response = resources
-                .target("/account/d")
+                .target("/account/")
                 .request(MediaType.APPLICATION_JSON)
-                .post(Entity.json(testDeposit));
+                .post(Entity.json(testTransaction));
 
 
         assertThat(response.getStatus()).isEqualTo(Response.ok().build().getStatus());
@@ -42,8 +42,6 @@ public class AccountResourceMappingTest {
                 .get(Balance.class);
 
         assertThat(actual).isEqualTo(expected);
-
-
     }
     //TODO add withdraw
 

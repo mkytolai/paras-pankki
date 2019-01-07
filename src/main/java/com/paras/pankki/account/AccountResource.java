@@ -20,13 +20,8 @@ public class AccountResource {
         this.bank = bank;
     }
 
-    @POST
-    @Path("d")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response deposit(Deposit deposit) {
-        deposit(deposit.getCustomer(), deposit.getBalance());
-        return Response.ok(deposit).build();
-
+    void withdraw(Customer customer, Balance balance) {
+        bank.withdraw(customer, balance);
     }
 
     void deposit(Customer customer, Balance balance) {
@@ -40,19 +35,27 @@ public class AccountResource {
     }
 
     @POST
-    @Path("w")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response withdraw(Withdrawal w) {
+    public Response transaction(Transaction transaction) {
 
-        try {
-            withdraw(w.getCustomer(), w.getBalance());
-        } catch (InsufficientFundsException i) {
-            return Response.status(403).entity(i.getMessage()).type(MediaType.TEXT_PLAIN).build();
+        if (transaction.getT() == 0) {
+            deposit(transaction.getCustomer(), transaction.getBalance());
+            return Response.ok(transaction).build();
+
+        } else if (transaction.getT()==1) {
+
+            try {
+                withdraw(transaction.getCustomer(), transaction.getBalance());
+            } catch (InsufficientFundsException i) {
+                return Response.status(403).entity(i.getMessage()).type(MediaType.TEXT_PLAIN).build();
+            }
+            return Response.ok(transaction).build();
+
+
+        } else { // should never get here
+            return Response.status(400).build();
         }
-        return Response.ok(w).build();
+
     }
 
-    void withdraw(Customer customer, Balance balance) {
-        bank.withdraw(customer, balance);
-    }
 }

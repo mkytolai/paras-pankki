@@ -5,20 +5,24 @@ import com.paras.pankki.customer.Customer;
 import java.util.Objects;
 
 public class Transaction {
-
-    enum TransactionType {
+    //TODO add enum back, Integer is clunky
+/**
+    public enum TransactionType {
         WITHDRAWAL,
         DEPOSIT
     }
+ **/
 
     private Customer customer;
     private Balance balance;
-    private TransactionType t;
+    private Integer t;
 
     public Transaction() {
+        this.customer = new Customer("");
+        this.balance = new Balance(0, new Currency(""));
+        this.t = 0;
     }
-
-    public Transaction(Customer customer, Balance balance, TransactionType t) {
+    Transaction(Customer customer, Balance balance, Integer t) {
         this.customer = customer;
         this.balance = balance;
         this.t = t;
@@ -32,9 +36,10 @@ public class Transaction {
         return balance;
     }
 
-    public TransactionType getTransactionType() {
+    public Integer getT() {
         return t;
     }
+
 
     @Override
     public boolean equals(Object o) {
