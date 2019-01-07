@@ -38,12 +38,11 @@ public class AccountResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response transaction(Transaction transaction) {
 
-        if (transaction.getT() == 0) {
+        if (transaction.getTransactionType()== Transaction.TransactionType.DEPOSIT) {
             deposit(transaction.getCustomer(), transaction.getBalance());
             return Response.ok(transaction).build();
 
-        }
-        if (transaction.getT() == 1) {
+        }else if (transaction.getTransactionType()== Transaction.TransactionType.WITHDRAWAL) {
             try {
                 withdraw(transaction.getCustomer(), transaction.getBalance());
             } catch (InsufficientFundsException i) {

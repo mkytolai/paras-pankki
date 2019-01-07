@@ -20,7 +20,7 @@ public class RestClientAdapter implements Adapter {
         Client jerseyClient = JerseyClientBuilder.createClient();
         Customer testCustomer = new Customer(customer);
         Balance testBalance = new Balance(balance, new Currency(currency));
-        Transaction transaction = new Transaction(testCustomer, testBalance, 0);
+        Transaction transaction = new Transaction(testCustomer, testBalance, Transaction.TransactionType.DEPOSIT);
 
         jerseyClient
                 .target("http://127.0.0.1:4567")
@@ -43,7 +43,7 @@ public class RestClientAdapter implements Adapter {
     public void withdraw(String customer, Balance balance) {
         Client jerseyClient = JerseyClientBuilder.createClient();
         Customer testCustomer = new Customer(customer);
-        Transaction testTransaction = new Transaction(testCustomer, balance, 1);
+        Transaction testTransaction = new Transaction(testCustomer, balance, Transaction.TransactionType.WITHDRAWAL);
 
         Response response = jerseyClient
                 .target("http://127.0.0.1:4567")

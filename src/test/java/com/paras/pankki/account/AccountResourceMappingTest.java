@@ -26,7 +26,7 @@ public class AccountResourceMappingTest {
 
         Balance expected = new Balance(25, new Currency("EUR"));
 
-        Transaction testTransaction = new Transaction(new Customer("Alma"), new Balance(25, new Currency("EUR")), 0);
+        Transaction testTransaction = new Transaction(new Customer("Alma"), new Balance(25, new Currency("EUR")), Transaction.TransactionType.DEPOSIT);
 
         Response response = resources
                 .target("/account/")
@@ -47,7 +47,7 @@ public class AccountResourceMappingTest {
     @Test
     public void should_withdraw_10_EUR_from_Alma_and_verify() {
         Balance expected = new Balance(15, new Currency("EUR"));
-        Transaction startingBalance = new Transaction(new Customer("Alma"), new Balance(25, new Currency("EUR")), 0);
+        Transaction startingBalance = new Transaction(new Customer("Alma"), new Balance(25, new Currency("EUR")), Transaction.TransactionType.DEPOSIT);
 
         Response depositResponse = resources
                 .target("/account")
@@ -56,7 +56,7 @@ public class AccountResourceMappingTest {
 
         assertThat(depositResponse.getStatus()).isEqualTo(Response.ok().build().getStatus());
 
-        Transaction withdrawal = new Transaction(new Customer("Alma"), new Balance(10, new Currency("EUR")), 1);
+        Transaction withdrawal = new Transaction(new Customer("Alma"), new Balance(10, new Currency("EUR")), Transaction.TransactionType.WITHDRAWAL);
 
         Response withdrawResponse = resources
                 .target("/account")

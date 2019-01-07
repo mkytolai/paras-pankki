@@ -36,7 +36,7 @@ public class AccountResourceTest {
 
         Balance balance = new Balance(25, new Currency("EUR"));
         Customer customer = new Customer("Alma");
-        Transaction transaction = new Transaction(customer, balance, 0);
+        Transaction transaction = new Transaction(customer, balance, Transaction.TransactionType.DEPOSIT);
         accountResource.transaction(transaction);
 
         verify(bank).deposit(customer, balance);
@@ -67,11 +67,11 @@ public class AccountResourceTest {
 
         Balance balance = new Balance(25, new Currency("EUR"));
         Customer customer = new Customer("Alma");
-        Transaction startingBalance = new Transaction(customer, balance, 0);
+        Transaction startingBalance = new Transaction(customer, balance, Transaction.TransactionType.DEPOSIT);
         accountResource.transaction(startingBalance);
 
         Balance toWithdraw = new Balance(10, new Currency("EUR"));
-        Transaction withdrawal = new Transaction(customer, toWithdraw, 1);
+        Transaction withdrawal = new Transaction(customer, toWithdraw, Transaction.TransactionType.WITHDRAWAL);
         accountResource.transaction(withdrawal);
 
         verify(bank).withdraw(customer, toWithdraw);
