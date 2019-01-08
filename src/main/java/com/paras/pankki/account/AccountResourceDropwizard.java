@@ -1,7 +1,5 @@
 package com.paras.pankki.account;
 
-import com.paras.pankki.Bank;
-import com.paras.pankki.InsufficientFundsException;
 import com.paras.pankki.customer.Customer;
 
 import javax.ws.rs.*;
@@ -12,10 +10,10 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
-public class AccountResource {
+public class AccountResourceDropwizard {
     private Bank bank;
 
-    public AccountResource(Bank bank) {
+    public AccountResourceDropwizard(Bank bank) {
         this.bank = bank;
     }
 

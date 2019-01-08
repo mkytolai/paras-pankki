@@ -1,6 +1,7 @@
 package com.paras.pankki;
 
-import com.paras.pankki.account.AccountResource;
+import com.paras.pankki.account.AccountResourceDropwizard;
+import com.paras.pankki.account.Bank;
 import com.paras.pankki.version.VersionHealthCheck;
 import com.paras.pankki.version.VersionRepository;
 import com.paras.pankki.version.VersionResource;
@@ -8,11 +9,11 @@ import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
 
-public class Main extends Application<Configuration> {
+public class MainDropwizard extends Application<Configuration> {
 
     public static void main(String... args) throws Exception {
 
-        new Main().run(args);
+        new MainDropwizard().run(args);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class Main extends Application<Configuration> {
         VersionResource version = new VersionResource(versionRepository);
         environment.jersey().register(version);
 
-        AccountResource accountResource = new AccountResource(new Bank());
+        AccountResourceDropwizard accountResource = new AccountResourceDropwizard(new Bank());
         environment.jersey().register(accountResource);
 
     }

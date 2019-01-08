@@ -1,6 +1,6 @@
 package com.paras.pankki.account;
 
-import com.paras.pankki.Main;
+import com.paras.pankki.MainDropwizard;
 
 class ApplicationSupport {
 
@@ -13,7 +13,7 @@ class ApplicationSupport {
         if (!isRunning) {
             isRunning = Boolean.TRUE;
             try {
-                Main.main(command, configuration);
+                MainDropwizard.main(command, configuration);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

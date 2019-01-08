@@ -1,11 +1,10 @@
 package com.paras.pankki.account;
 
-import com.paras.pankki.Bank;
 import com.paras.pankki.customer.Customer;
 
 public class InMemoryAdapter implements Adapter {
 
-    private AccountResource accountResource = new AccountResource(new Bank());
+    private AccountResourceDropwizard accountResource = new AccountResourceDropwizard(new Bank());
 
     @Override
     public void deposit(String customer, Integer balance, String currency) {

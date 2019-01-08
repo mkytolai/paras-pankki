@@ -1,4 +1,4 @@
-package com.paras.pankki;
+package com.paras.pankki.account;
 
 public class InsufficientFundsException extends RuntimeException {
     public InsufficientFundsException(String errorMessage) {

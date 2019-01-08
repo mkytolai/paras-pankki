@@ -1,4 +1,4 @@
-package com.paras.pankki;
+package com.paras.pankki.account;
 
 import com.paras.pankki.account.Account;
 import com.paras.pankki.account.Balance;

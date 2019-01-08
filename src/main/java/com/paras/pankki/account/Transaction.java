@@ -55,4 +55,13 @@ public class Transaction {
     public int hashCode() {
         return Objects.hash(customer, balance, transactionType);
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "customer=" + customer +
+                ", balance=" + balance +
+                ", transactionType=" + transactionType +
+                '}';
+    }
 }

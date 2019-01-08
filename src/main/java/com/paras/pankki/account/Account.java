@@ -1,7 +1,5 @@
 package com.paras.pankki.account;
 
-import com.paras.pankki.InsufficientFundsException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

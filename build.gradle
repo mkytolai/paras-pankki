@@ -3,12 +3,18 @@ import java.text.SimpleDateFormat
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
     }
 }
 
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '4.0.2'
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.6.RELEASE'
 }
 
 if (project.hasProperty('projVersion')) {
@@ -29,13 +35,15 @@ compileJava {
 
 dependencies {
     compile 'io.dropwizard:dropwizard-core:' + dropwizardVersion
-
+    compile 'org.springframework.boot:spring-boot-starter-web:2.1.1.RELEASE'
+    
     testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
     testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
     testCompile 'org.assertj:assertj-core:3.10.0'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.22.0'
     testCompile 'io.dropwizard:dropwizard-testing:' + dropwizardVersion
+    testCompile 'org.springframework.boot:spring-boot-starter-web:2.1.1.RELEASE'
 }
 
 test {
@@ -50,7 +58,7 @@ shadowJar {
     exclude 'META-INF/*.RSA'
     def buildDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date())
     manifest {
-        attributes 'Main-Class': 'com.paras.pankki.Main'
+        attributes 'Main-Class': 'com.paras.pankki.MainDropwizard'
         attributes 'Build-Date': buildDate
         attributes 'Implementation-Version': version
     }
@@ -59,6 +67,11 @@ shadowJar {
 
 task stage() {
     it.dependsOn shadowJar
+}
+
+bootJar {
+    baseName = 'paras-pankki-spring'
+    version =  '0.1.0'
 }
 
 repositories {
