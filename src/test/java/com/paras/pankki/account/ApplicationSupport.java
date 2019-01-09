@@ -1,6 +1,7 @@
 package com.paras.pankki.account;
 
-import com.paras.pankki.MainDropwizard;
+import com.paras.pankki.Main;
+import org.springframework.boot.SpringApplication;
 
 class ApplicationSupport {
 
@@ -9,11 +10,11 @@ class ApplicationSupport {
     private ApplicationSupport() {
     }
 
-    static void start(String command, String configuration) {
+    static void start() {
         if (!isRunning) {
             isRunning = Boolean.TRUE;
             try {
-                MainDropwizard.main(command, configuration);
+                SpringApplication.run(Main.class);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

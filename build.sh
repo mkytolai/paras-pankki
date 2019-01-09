@@ -5,7 +5,7 @@ time (
         exit
     fi
 
-    if ! ./gradlew clean stage -DE2E; then
+    if ! ./gradlew clean build -DE2E; then
         exit
     fi
 )

@@ -1,5 +1,6 @@
 package com.paras.pankki.account;
 
+import com.paras.pankki.Bank;
 import com.paras.pankki.customer.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,15 +10,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping(value = "/account")
-public class AccountResourceSpring {
+public class AccountResource {
 
     private Bank bank;
 
-    private AccountResourceSpring() {
+    private AccountResource() {
         bank = new Bank();
     }
 
-    public AccountResourceSpring(Bank bank){
+    public AccountResource(Bank bank){
         this.bank = bank;
     }
 

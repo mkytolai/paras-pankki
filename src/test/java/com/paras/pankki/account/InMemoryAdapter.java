@@ -1,12 +1,13 @@
 package com.paras.pankki.account;
 
+import com.paras.pankki.Bank;
 import com.paras.pankki.customer.Customer;
 
 public class InMemoryAdapter implements Adapter {
 
     //private AccountResourceDropwizard accountResource = new AccountResourceDropwizard(new Bank());
     private Bank bank = new Bank();
-    private AccountResourceSpring accountResource = new AccountResourceSpring(bank);
+    private AccountResource accountResource = new AccountResource(bank);
 
 
     @Override
