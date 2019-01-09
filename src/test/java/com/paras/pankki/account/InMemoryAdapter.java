@@ -4,18 +4,19 @@ import com.paras.pankki.customer.Customer;
 
 public class InMemoryAdapter implements Adapter {
 
-    private AccountResourceDropwizard accountResource = new AccountResourceDropwizard(new Bank());
+    //private AccountResourceDropwizard accountResource = new AccountResourceDropwizard(new Bank());
+    private Bank bank = new Bank();
+    private AccountResourceSpring accountResource = new AccountResourceSpring(bank);
+
 
     @Override
     public void deposit(String customer, Integer balance, String currency) {
-
         Balance bal = new Balance(balance, new Currency(currency));
         accountResource.deposit(new Customer(customer), bal);
     }
 
     @Override
     public Balance getBalance(String customer) {
-
         Customer c = new Customer(customer);
         return accountResource.getBalance(c);
     }

@@ -1,8 +1,6 @@
 package com.paras.pankki.account;
 
 import com.paras.pankki.customer.Customer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +13,22 @@ public class AccountResourceSpring {
 
     private Bank bank;
 
-    /*
-    public AccountResourceSpring(Bank bank) {
+    private AccountResourceSpring() {
+        bank = new Bank();
+    }
+
+    public AccountResourceSpring(Bank bank){
         this.bank = bank;
     }
-*/
 
     @RequestMapping(value = "/{customer}", method = GET)
-    public Balance user(@PathVariable("customer") Customer customer) {
+    public Balance getBalance(@PathVariable("customer") Customer customer) {
         return bank.getBalance(customer);
     }
 
     @PostMapping
     public ResponseEntity<String> transaction(@RequestBody Transaction transaction) {
 
-        if (bank == null) {
-            bank = new Bank();
-        }
 
         if (transaction.getTransactionType() == Transaction.TransactionType.DEPOSIT) {
             return deposit(transaction);
@@ -40,7 +37,7 @@ public class AccountResourceSpring {
             return withdraw(transaction);
         }
 
-        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(transaction.toString());
+        return ResponseEntity.status(403).body(transaction.toString());
     }
 
     private ResponseEntity<String> deposit(Transaction transaction) {
@@ -48,8 +45,7 @@ public class AccountResourceSpring {
 
         return ResponseEntity.status(HttpStatus.OK).body(transaction.toString());
     }
-
-    private void deposit(Customer customer, Balance balance) {
+    void deposit(Customer customer, Balance balance) {
         bank.deposit(customer, balance);
     }
 
@@ -61,8 +57,7 @@ public class AccountResourceSpring {
         }
         return ResponseEntity.status(HttpStatus.OK).body(transaction.toString());
     }
-
-    private void withdraw(Customer customer, Balance balance) {
+    void withdraw(Customer customer, Balance balance) {
         bank.withdraw(customer, balance);
     }
 }

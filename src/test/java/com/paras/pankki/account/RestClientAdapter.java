@@ -11,7 +11,8 @@ import javax.ws.rs.core.Response;
 public class RestClientAdapter implements Adapter {
 
     public RestClientAdapter() {
-        ApplicationSupport.start("server", "configuration.yaml");
+        //ApplicationSupport.start("server", "configuration.yaml");
+        ApplicationSupportSpring.start();
     }
 
     @Override
@@ -21,8 +22,11 @@ public class RestClientAdapter implements Adapter {
         Balance testBalance = new Balance(balance, new Currency(currency));
         Transaction transaction = new Transaction(testCustomer, testBalance, Transaction.TransactionType.DEPOSIT);
 
+        String dropWizardTarget = "http://127.0.0.1:4567";
+        String springTarget = "http://127.0.0.1:8080";
+
         jerseyClient
-                .target("http://127.0.0.1:4567")
+                .target(springTarget)
                 .path("account")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(transaction));
@@ -31,8 +35,12 @@ public class RestClientAdapter implements Adapter {
     @Override
     public Balance getBalance(String user) {
         Client jerseyClient = JerseyClientBuilder.createClient();
+
+        String dropWizardTarget = "http://127.0.0.1:4567";
+        String springTarget = "http://127.0.0.1:8080";
+
         return jerseyClient
-                .target("http://127.0.0.1:4567")
+                .target(springTarget)
                 .path("account/" + user)
                 .request()
                 .get(Balance.class);
@@ -44,8 +52,11 @@ public class RestClientAdapter implements Adapter {
         Customer testCustomer = new Customer(customer);
         Transaction testTransaction = new Transaction(testCustomer, balance, Transaction.TransactionType.WITHDRAWAL);
 
+        String dropWizardTarget = "http://127.0.0.1:4567";
+        String springTarget = "http://127.0.0.1:8080";
+
         Response response = jerseyClient
-                .target("http://127.0.0.1:4567")
+                .target(springTarget)
                 .path("account")
                 .request(MediaType.APPLICATION_JSON)
                 .post(Entity.json(testTransaction));

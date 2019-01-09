@@ -37,6 +37,8 @@ dependencies {
     compile 'io.dropwizard:dropwizard-core:' + dropwizardVersion
     compile 'org.springframework.boot:spring-boot-starter-web:2.1.1.RELEASE'
     
+    testCompile 'org.glassfish.jersey.inject:jersey-hk2:2.27'
+    testCompile 'org.glassfish.jersey.test-framework:jersey-test-framework-core:2.27'
     testCompile 'io.cucumber:cucumber-java:' + cucumberVersion
     testCompile 'io.cucumber:cucumber-junit:' + cucumberVersion
     testCompile 'org.assertj:assertj-core:3.10.0'
