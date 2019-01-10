@@ -18,9 +18,10 @@ public class AccountResource {
         bank = new Bank();
     }
 
-    public AccountResource(Bank bank){
+    public AccountResource(Bank bank) {
         this.bank = bank;
     }
+
 
     @RequestMapping(value = "/{customer}", method = GET)
     public Balance getBalance(@PathVariable("customer") Customer customer) {
@@ -29,7 +30,6 @@ public class AccountResource {
 
     @PostMapping
     public ResponseEntity<String> transaction(@RequestBody Transaction transaction) {
-
 
         if (transaction.getTransactionType() == Transaction.TransactionType.DEPOSIT) {
             return deposit(transaction);
@@ -46,6 +46,7 @@ public class AccountResource {
 
         return ResponseEntity.status(HttpStatus.OK).body(transaction.toString());
     }
+
     void deposit(Customer customer, Balance balance) {
         bank.deposit(customer, balance);
     }
@@ -58,6 +59,7 @@ public class AccountResource {
         }
         return ResponseEntity.status(HttpStatus.OK).body(transaction.toString());
     }
+
     void withdraw(Customer customer, Balance balance) {
         bank.withdraw(customer, balance);
     }
