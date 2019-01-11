@@ -10,11 +10,17 @@ class AccountHelper {
     private Balance currentBalance;
 
     AccountHelper() {
+        helper = new InterfaceAdapter();
+        /*
+        if (System.getProperty("INT") != null){
+            helper = new InterfaceAdapter();
+        }
         if (System.getProperty("E2E") != null) {
             helper = new RestClientAdapter();
         } else {
             helper = new InMemoryAdapter();
         }
+        */
     }
 
     void deposit(Integer amount, String currency) {

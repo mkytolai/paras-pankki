@@ -21,9 +21,8 @@ function deposit() {
         type: "POST",
         data: JSON.stringify(transaction),
         contentType: "application/json; charset=utf-8",
-        dataType: "json",
         success: function () {
-            console.log("Bravo")
+            //$('#balanceArea p').text("deposit ok")
         }
     })
 }
@@ -43,7 +42,7 @@ function withdraw() {
                 "currency": currency.val()
             }
         },
-        "transactionType": "WITHDRAW"
+        "transactionType": "WITHDRAWAL"
     };
 
     $.ajax({
@@ -51,9 +50,12 @@ function withdraw() {
         type: "POST",
         data: JSON.stringify(transaction),
         contentType: "application/json; charset=utf-8",
-        dataType: "json",
         success: function () {
-            console.log("Bravo")
+            //$('#balanceArea p').text("Withdraw ok")
+        },
+        error: function (data){
+            //alert(JSON.stringify(data, null, 4))
+            $('#balanceArea p').text("Error: "+data.status+", Reason: "+data.responseText)
         }
     })
 }
@@ -68,9 +70,7 @@ function getBalance() {
         type: "GET",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-          //  console.log(data.currency.currency);
-          //  console.log(data.balance);
-            $('#balanceArea p').text("Saldot är för tillfället: "+data.balance+" "+data.currency.currency);
+            $('#balanceArea p').text(name.val()+"s saldo är: "+data.balance+" "+data.currency.currency);
         }
     })
 }
