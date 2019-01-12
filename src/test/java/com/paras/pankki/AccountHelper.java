@@ -10,8 +10,7 @@ class AccountHelper {
     private Balance currentBalance;
 
     AccountHelper() {
-        helper = new InterfaceAdapter();
-        /*
+
         if (System.getProperty("INT") != null){
             helper = new InterfaceAdapter();
         }
@@ -20,7 +19,7 @@ class AccountHelper {
         } else {
             helper = new InMemoryAdapter();
         }
-        */
+
     }
 
     void deposit(Integer amount, String currency) {
@@ -50,5 +49,11 @@ class AccountHelper {
         Balance expectedBalance = new Balance(expected, new Currency(currency));
 
         assertThat(currentBalance).isEqualTo(expectedBalance);
+    }
+
+    public void stopBrowser() {
+        if(helper.getClass().equals(InterfaceAdapter.class)){
+            InterfaceAdapter.stopBrowser((InterfaceAdapter)helper);
+        }
     }
 }

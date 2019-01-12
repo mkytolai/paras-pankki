@@ -8,4 +8,9 @@ time (
     if ! ./gradlew clean build -DE2E; then
         exit
     fi
+
+    if ! ./gradlew clean build -DINT; then
+        exit
+    fi
+
 )

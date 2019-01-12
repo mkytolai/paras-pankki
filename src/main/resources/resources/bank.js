@@ -55,7 +55,7 @@ function withdraw() {
         },
         error: function (data){
             //alert(JSON.stringify(data, null, 4))
-            $('#balanceArea p').text("Error: "+data.status+", Reason: "+data.responseText)
+            $('#balanceArea p').text("Error: "+data.status+data.responseText)
         }
     })
 }
